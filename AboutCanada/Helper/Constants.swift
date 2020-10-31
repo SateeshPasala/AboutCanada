@@ -19,3 +19,8 @@ public enum EndPoints: String {
     case test = "https://www.google.com"
 }
 
+public enum ConstantStrings: String {
+    case okButtonTitle = "OK"
+    case titleError = "no title available"
+    case descreptionError = "no description available"
+}

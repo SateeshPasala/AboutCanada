@@ -107,7 +107,7 @@ class MainViewController: UIViewController {
                 /// Showing alert for errors
                 DispatchQueue.main.async() {
                     let alert = Alert.init(subTitle: error.localizedDescription,
-                                           cancelTitle: "OK")
+                                           cancelTitle: ConstantStrings.okButtonTitle.rawValue)
                     alert.presentAlert(from: self)
                 }
             }

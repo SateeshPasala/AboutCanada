@@ -80,13 +80,31 @@ class InfoTableViewCell: UITableViewCell {
         
     }
     
+    override func prepareForReuse() {
+        title.textColor = nil
+        descreption.textColor = nil
+    }
+    
     public func show(data: CandaListCellData) {
-        title.text = data.title
-        descreption.text = data.body
-        if(data.icon == ""){
-        cellImage.image = UIImage(named: "noImage")
+        if(data.title == ""){
+            title.textColor = UIColor.red
+            title.text = ConstantStrings.titleError.rawValue
+            
         }else{
-        cellImage.loadThumbnail(urlSting: data.icon )
+            title.text = data.title
+        }
+        
+        if(data.body == ""){
+            descreption.textColor = UIColor.red
+            descreption.text = ConstantStrings.descreptionError.rawValue
+        }else{
+            descreption.text = data.body
+        }
+        
+        if(data.icon == ""){
+            cellImage.image = UIImage(named: "noImage")
+        }else{
+            cellImage.loadThumbnail(urlSting: data.icon )
         }
     }
 
@@ -94,8 +112,10 @@ class InfoTableViewCell: UITableViewCell {
     
     private func configLabels() {
         title.isUserInteractionEnabled = false
-        descreption.numberOfLines = 0
         title.numberOfLines = 1
+        title.font = .boldSystemFont(ofSize: 18)
+        descreption.numberOfLines = 0
+        descreption.font = .italicSystemFont(ofSize: 18)
         cellImage.contentMode =  .scaleAspectFit;
         
     }
