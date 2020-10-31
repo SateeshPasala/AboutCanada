@@ -13,6 +13,8 @@ class MainViewController: UIViewController {
     var tableview  =  UITableView()
     private var canadaListViewModel: CandaViewModel?
     var safeArea: UILayoutGuide!
+    var navBar: UINavigationBar!
+    var navBarTittle : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +42,10 @@ class MainViewController: UIViewController {
     }
     func setNavigationBar() {
         let screenSize: CGRect = UIScreen.main.bounds
-        let navBar = UINavigationBar(frame: CGRect(x: 0, y:20, width: screenSize.width, height: 44))
-        let navItem = UINavigationItem(title: "Canada")
-        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh, target: nil, action: #selector(refresh))
-        navItem.rightBarButtonItem = doneItem
+         navBar = UINavigationBar(frame: CGRect(x: 0, y:20, width: screenSize.width, height: 44))
+        let navItem = UINavigationItem(title: navBarTittle ?? "")
+        let refreshItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh, target: nil, action: #selector(refresh))
+        navItem.rightBarButtonItem = refreshItem
         navBar.setItems([navItem], animated: false)
         self.view.addSubview(navBar)
     }
@@ -55,6 +57,7 @@ class MainViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         setNavigationBar()
+        setUpView()
     }
     
     
@@ -70,11 +73,11 @@ class MainViewController: UIViewController {
         
         
         //Refresh Button
-        let leftBarButton = UIBarButtonItem(title: NSLocalizedString("localiseRefreshButton", comment: ""),
+        let rightBarButton = UIBarButtonItem(title: NSLocalizedString("localiseRefreshButton", comment: ""),
                                             style: .plain,
                                             target: self,
                                             action: #selector(refreshData))
-        navigationItem.setRightBarButton(leftBarButton, animated: true)
+        navigationItem.setRightBarButton(rightBarButton, animated: true)
         
         tableview.delegate = self
         tableview.register(InfoTableViewCell.self, forCellReuseIdentifier: CellID)
@@ -98,7 +101,8 @@ class MainViewController: UIViewController {
             case .success(let cellData):
                 ///update UI on main thread
                 DispatchQueue.main.async {
-                self.title = cellData.title
+                    self.navBarTittle = cellData.title
+                    self.navBar.topItem?.title = cellData.title
                 }
                 self.canadaListViewModel =  CandaViewModel.init(cellData:cellData.rows!)
             case .failure(let error):
