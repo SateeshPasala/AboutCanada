@@ -32,6 +32,8 @@
 		EB004F00254D2B1300C360E3 /* CanadaListCellDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004EFE254D2B1300C360E3 /* CanadaListCellDataSource.swift */; };
 		EB004F0A254D536800C360E3 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004F09254D536800C360E3 /* Alert.swift */; };
 		EB004F0B254D536800C360E3 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004F09254D536800C360E3 /* Alert.swift */; };
+		EB004F0D254D6B5F00C360E3 /* CanadaInfoJsonString.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004F0C254D6B5F00C360E3 /* CanadaInfoJsonString.swift */; };
+		EB004F0E254D6B5F00C360E3 /* CanadaInfoJsonString.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004F0C254D6B5F00C360E3 /* CanadaInfoJsonString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,7 @@
 		EB004EF7254D298600C360E3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EB004EFE254D2B1300C360E3 /* CanadaListCellDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanadaListCellDataSource.swift; sourceTree = "<group>"; };
 		EB004F09254D536800C360E3 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		EB004F0C254D6B5F00C360E3 /* CanadaInfoJsonString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanadaInfoJsonString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,7 @@
 		EB004ED3254D1E7300C360E3 /* AboutCanadaTests */ = {
 			isa = PBXGroup;
 			children = (
+				EB004F0C254D6B5F00C360E3 /* CanadaInfoJsonString.swift */,
 				EB004ED4254D1E7300C360E3 /* AboutCanadaTests.swift */,
 				EB004ED6254D1E7300C360E3 /* Info.plist */,
 			);
@@ -288,6 +292,7 @@
 				EB004EBE254D1E6D00C360E3 /* AppDelegate.swift in Sources */,
 				EB004EE4254D227A00C360E3 /* Asset.swift in Sources */,
 				EB004EF2254D28A000C360E3 /* Extensions.swift in Sources */,
+				EB004F0D254D6B5F00C360E3 /* CanadaInfoJsonString.swift in Sources */,
 				EB004EEA254D256A00C360E3 /* InfoTableViewCell.swift in Sources */,
 				EB004EF8254D298600C360E3 /* Constants.swift in Sources */,
 				EB004F0A254D536800C360E3 /* Alert.swift in Sources */,
@@ -309,6 +314,7 @@
 				EB004EEB254D256A00C360E3 /* InfoTableViewCell.swift in Sources */,
 				EB004EF6254D295800C360E3 /* CanadaViewModel.swift in Sources */,
 				EB004ED5254D1E7300C360E3 /* AboutCanadaTests.swift in Sources */,
+				EB004F0E254D6B5F00C360E3 /* CanadaInfoJsonString.swift in Sources */,
 				EB004EE7254D227A00C360E3 /* CellData.swift in Sources */,
 				EB004F00254D2B1300C360E3 /* CanadaListCellDataSource.swift in Sources */,
 				EB004F0B254D536800C360E3 /* Alert.swift in Sources */,
