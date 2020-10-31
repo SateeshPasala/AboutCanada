@@ -20,6 +20,16 @@
 		EB004EEA254D256A00C360E3 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004EE9254D256A00C360E3 /* InfoTableViewCell.swift */; };
 		EB004EEB254D256A00C360E3 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004EE9254D256A00C360E3 /* InfoTableViewCell.swift */; };
 		EB004EED254D266400C360E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB004EEC254D266400C360E3 /* Main.storyboard */; };
+		EB004EEF254D288F00C360E3 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004EEE254D288F00C360E3 /* Networking.swift */; };
+		EB004EF0254D288F00C360E3 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004EEE254D288F00C360E3 /* Networking.swift */; };
+		EB004EF2254D28A000C360E3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004EF1254D28A000C360E3 /* Extensions.swift */; };
+		EB004EF3254D28A000C360E3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004EF1254D28A000C360E3 /* Extensions.swift */; };
+		EB004EF5254D295800C360E3 /* CanadaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004EF4254D295800C360E3 /* CanadaViewModel.swift */; };
+		EB004EF6254D295800C360E3 /* CanadaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004EF4254D295800C360E3 /* CanadaViewModel.swift */; };
+		EB004EF8254D298600C360E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004EF7254D298600C360E3 /* Constants.swift */; };
+		EB004EF9254D298600C360E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004EF7254D298600C360E3 /* Constants.swift */; };
+		EB004EFF254D2B1300C360E3 /* CanadaListCellDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004EFE254D2B1300C360E3 /* CanadaListCellDataSource.swift */; };
+		EB004F00254D2B1300C360E3 /* CanadaListCellDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB004EFE254D2B1300C360E3 /* CanadaListCellDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +57,11 @@
 		EB004EE3254D227A00C360E3 /* CellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
 		EB004EE9254D256A00C360E3 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		EB004EEC254D266400C360E3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		EB004EEE254D288F00C360E3 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		EB004EF1254D28A000C360E3 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		EB004EF4254D295800C360E3 /* CanadaViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanadaViewModel.swift; sourceTree = "<group>"; };
+		EB004EF7254D298600C360E3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EB004EFE254D2B1300C360E3 /* CanadaListCellDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanadaListCellDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +105,11 @@
 			children = (
 				EB004EBD254D1E6D00C360E3 /* AppDelegate.swift */,
 				EB004EBF254D1E6D00C360E3 /* SceneDelegate.swift */,
-				EB004EDF254D1EC400C360E3 /* MainViewController.swift */,
-				EB004EE9254D256A00C360E3 /* InfoTableViewCell.swift */,
+				EB004F01254D2BE500C360E3 /* Helper */,
+				EB004EFD254D29F500C360E3 /* Network */,
+				EB004EFC254D29C800C360E3 /* ViewModel */,
+				EB004EFA254D29A100C360E3 /* ViewController */,
+				EB004EFB254D29BE00C360E3 /* View */,
 				EB004EE8254D22EB00C360E3 /* Model */,
 				EB004EC6254D1E7200C360E3 /* Assets.xcassets */,
 				EB004EEC254D266400C360E3 /* Main.storyboard */,
@@ -117,6 +135,48 @@
 				EB004EE3254D227A00C360E3 /* CellData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		EB004EFA254D29A100C360E3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EB004EDF254D1EC400C360E3 /* MainViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		EB004EFB254D29BE00C360E3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EB004EE9254D256A00C360E3 /* InfoTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EB004EFC254D29C800C360E3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EB004EF4254D295800C360E3 /* CanadaViewModel.swift */,
+				EB004EFE254D2B1300C360E3 /* CanadaListCellDataSource.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EB004EFD254D29F500C360E3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				EB004EEE254D288F00C360E3 /* Networking.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		EB004F01254D2BE500C360E3 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				EB004EF1254D28A000C360E3 /* Extensions.swift */,
+				EB004EF7254D298600C360E3 /* Constants.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,9 +283,14 @@
 				EB004EE0254D1EC400C360E3 /* MainViewController.swift in Sources */,
 				EB004EBE254D1E6D00C360E3 /* AppDelegate.swift in Sources */,
 				EB004EE4254D227A00C360E3 /* Asset.swift in Sources */,
+				EB004EF2254D28A000C360E3 /* Extensions.swift in Sources */,
 				EB004EEA254D256A00C360E3 /* InfoTableViewCell.swift in Sources */,
+				EB004EF8254D298600C360E3 /* Constants.swift in Sources */,
 				EB004EE6254D227A00C360E3 /* CellData.swift in Sources */,
 				EB004EC0254D1E6D00C360E3 /* SceneDelegate.swift in Sources */,
+				EB004EF5254D295800C360E3 /* CanadaViewModel.swift in Sources */,
+				EB004EFF254D2B1300C360E3 /* CanadaListCellDataSource.swift in Sources */,
+				EB004EEF254D288F00C360E3 /* Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,9 +299,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB004EE5254D227A00C360E3 /* Asset.swift in Sources */,
+				EB004EF3254D28A000C360E3 /* Extensions.swift in Sources */,
+				EB004EF0254D288F00C360E3 /* Networking.swift in Sources */,
 				EB004EEB254D256A00C360E3 /* InfoTableViewCell.swift in Sources */,
+				EB004EF6254D295800C360E3 /* CanadaViewModel.swift in Sources */,
 				EB004ED5254D1E7300C360E3 /* AboutCanadaTests.swift in Sources */,
 				EB004EE7254D227A00C360E3 /* CellData.swift in Sources */,
+				EB004F00254D2B1300C360E3 /* CanadaListCellDataSource.swift in Sources */,
+				EB004EF9254D298600C360E3 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

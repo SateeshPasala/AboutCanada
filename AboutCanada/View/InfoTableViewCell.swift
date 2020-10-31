@@ -8,14 +8,18 @@
 
 import UIKit
 
-
+public protocol CandaListCellData {
+    var title: String { get }
+    var body: String { get }
+    var icon: String { get }
+}
 
 class InfoTableViewCell: UITableViewCell {
     
 
        var cellImage = UIImageView()
-        let title = UILabel()
-        let descreption = UILabel()
+       private let title = UILabel()
+       private let descreption = UILabel()
 
 
     override func awakeFromNib() {
@@ -76,6 +80,16 @@ class InfoTableViewCell: UITableViewCell {
         
     }
     
+    public func show(data: CandaListCellData) {
+        title.text = data.title
+        descreption.text = data.body
+        if(data.icon == ""){
+        cellImage.image = UIImage(named: "noImage")
+        }else{
+        cellImage.loadThumbnail(urlSting: data.icon )
+        }
+    }
+
     
     
     private func configLabels() {
