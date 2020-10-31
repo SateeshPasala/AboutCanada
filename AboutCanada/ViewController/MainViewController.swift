@@ -70,9 +70,6 @@ class MainViewController: UIViewController {
         setUpView()
     }
     
-    
-    
-    
     private func setUpView() {
         
         tableview.delegate = self

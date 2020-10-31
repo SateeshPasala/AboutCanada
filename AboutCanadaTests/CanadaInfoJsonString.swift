@@ -9,10 +9,8 @@ import Foundation
 
 
 public class CanadaInfoJsonString: NSObject{
-    
 
-
- var jsonDataString = """
+    var jsonDataString = """
 {
 "title":"About Canada",
 "rows":[

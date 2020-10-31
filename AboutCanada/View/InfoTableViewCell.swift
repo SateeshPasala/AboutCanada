@@ -16,20 +16,19 @@ public protocol CandaListCellData {
 
 class InfoTableViewCell: UITableViewCell {
     
-
-       var cellImage = UIImageView()
-       private let title = UILabel()
-       private let descreption = UILabel()
-
+    var cellImage = UIImageView()
+    private let title = UILabel()
+    private let descreption = UILabel()
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -38,11 +37,11 @@ class InfoTableViewCell: UITableViewCell {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.init(white: 1.0, alpha: 0.1)
         selectedBackgroundView = backgroundView
-       
+        
         contentView.addSubview(cellImage)
         contentView.addSubview(title)
         contentView.addSubview(descreption)
- 
+        
         
         configLabels()
         installConstraints()
@@ -56,7 +55,6 @@ class InfoTableViewCell: UITableViewCell {
     
     private func installConstraints() {
         
-        
         contentView.heightAnchor.constraint(greaterThanOrEqualToConstant:80).isActive = true
         
         cellImage.translatesAutoresizingMaskIntoConstraints = false
@@ -64,8 +62,6 @@ class InfoTableViewCell: UITableViewCell {
         cellImage.widthAnchor.constraint(equalToConstant: 62).isActive = true
         cellImage.heightAnchor.constraint(equalToConstant: 62).isActive = true
         cellImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
-
-        
         
         title.translatesAutoresizingMaskIntoConstraints = false
         title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15).isActive = true
@@ -105,11 +101,9 @@ class InfoTableViewCell: UITableViewCell {
         if(data.icon == ""){
             cellImage.image = UIImage(named: "noImage")
         }else{
-            cellImage.image = UIImage(named: "errorImage")
             cellImage.loadThumbnail(urlSting: data.icon )
         }
     }
-
     
     
     private func configLabels() {
@@ -121,5 +115,4 @@ class InfoTableViewCell: UITableViewCell {
         cellImage.contentMode =  .scaleAspectFit;
         
     }
-
 }

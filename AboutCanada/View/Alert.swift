@@ -26,7 +26,7 @@ final public class Alert {
     
     public func presentAlert(from: UIViewController,
                              actionHandler: ((UIAlertAction, Int) -> Void)? = nil,
-                                   cancelHandler: ((UIAlertAction) -> Void)? = nil) {
+                             cancelHandler: ((UIAlertAction) -> Void)? = nil) {
         
         let alert = UIAlertController(title: title,
                                       message: subTitle,
