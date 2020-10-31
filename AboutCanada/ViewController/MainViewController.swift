@@ -15,6 +15,13 @@ class MainViewController: UIViewController {
     var safeArea: UILayoutGuide!
     var navBar: UINavigationBar!
     var navBarTittle : String?
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(frame: .zero)
+        activityIndicator.style = .medium
+        activityIndicator.color = UIColor.black
+        return activityIndicator
+    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +51,11 @@ class MainViewController: UIViewController {
         let screenSize: CGRect = UIScreen.main.bounds
          navBar = UINavigationBar(frame: CGRect(x: 0, y:20, width: screenSize.width, height: 44))
         let navItem = UINavigationItem(title: navBarTittle ?? "")
+        let activityIndicatorItem = UIBarButtonItem(customView: self.activityIndicator)
         let refreshItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh, target: nil, action: #selector(refresh))
         navItem.rightBarButtonItem = refreshItem
+        navItem.leftBarButtonItem = activityIndicatorItem
+        navItem.largeTitleDisplayMode = .always
         navBar.setItems([navItem], animated: false)
         self.view.addSubview(navBar)
     }
@@ -65,20 +75,6 @@ class MainViewController: UIViewController {
     
     private func setUpView() {
         
-        /// Setting up navigation bar
-        //title = "Canada"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
-        UINavigationBar.appearance().prefersLargeTitles = true
-        
-        
-        //Refresh Button
-        let rightBarButton = UIBarButtonItem(title: NSLocalizedString("localiseRefreshButton", comment: ""),
-                                            style: .plain,
-                                            target: self,
-                                            action: #selector(refreshData))
-        navigationItem.setRightBarButton(rightBarButton, animated: true)
-        
         tableview.delegate = self
         tableview.register(InfoTableViewCell.self, forCellReuseIdentifier: CellID)
         tableview.dataSource = self
@@ -95,6 +91,7 @@ class MainViewController: UIViewController {
     }
     
     private func fetchData() {
+        activityIndicator.startAnimating()
         Networking.fetchData { [weak self] (result) in
             guard let self = self else { return }
             switch result {
@@ -117,6 +114,7 @@ class MainViewController: UIViewController {
             
             /// Reload tableView and dismiss activity indicator
             DispatchQueue.main.async() {
+                self.activityIndicator.stopAnimating()
                 self.tableview.reloadData()
             }
         }
