@@ -17,7 +17,7 @@ extension UIImageView {
     /// This method also using cache of loaded thumbnail using urlString as a key of cached thumbnail.
     func loadThumbnail(urlSting: String) {
         guard let url = URL(string: urlSting) else { return }
-        image = nil
+        image = UIImage(named: "errorImage")
         
         if let imageFromCache = imageCache.object(forKey: urlSting as AnyObject) {
             image = imageFromCache as? UIImage
@@ -27,11 +27,7 @@ extension UIImageView {
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                guard let imageToCache = UIImage(data: data) else {
-                    DispatchQueue.main.async {
-                            self.image = UIImage(named: "errorImage")
-                            }
-                return }
+                guard let imageToCache = UIImage(data: data) else {return }
                 imageCache.setObject(imageToCache, forKey: urlSting as AnyObject)
                 self.image = UIImage(data: data)
             case .failure(_):

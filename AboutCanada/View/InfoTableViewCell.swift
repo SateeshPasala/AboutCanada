@@ -68,7 +68,7 @@ class InfoTableViewCell: UITableViewCell {
         
         
         title.translatesAutoresizingMaskIntoConstraints = false
-        title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
+        title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15).isActive = true
         title.leadingAnchor.constraint(equalTo: cellImage.trailingAnchor, constant: 8).isActive = true
         title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
         
@@ -83,6 +83,7 @@ class InfoTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         title.textColor = nil
         descreption.textColor = nil
+        self.cellImage.image = nil
     }
     
     public func show(data: CandaListCellData) {
@@ -104,6 +105,7 @@ class InfoTableViewCell: UITableViewCell {
         if(data.icon == ""){
             cellImage.image = UIImage(named: "noImage")
         }else{
+            cellImage.image = UIImage(named: "errorImage")
             cellImage.loadThumbnail(urlSting: data.icon )
         }
     }
@@ -112,7 +114,7 @@ class InfoTableViewCell: UITableViewCell {
     
     private func configLabels() {
         title.isUserInteractionEnabled = false
-        title.numberOfLines = 1
+        title.numberOfLines = 0
         title.font = .boldSystemFont(ofSize: 18)
         descreption.numberOfLines = 0
         descreption.font = .italicSystemFont(ofSize: 18)

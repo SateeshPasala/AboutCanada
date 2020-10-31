@@ -12,8 +12,7 @@ class MainViewController: UIViewController {
     
     var tableview  =  UITableView()
     private var canadaListViewModel: CandaViewModel?
-    var safeArea: UILayoutGuide!
-    var navBar: UINavigationBar!
+    var navigationBar: UINavigationBar!
     var navBarTittle : String?
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(frame: .zero)
@@ -21,7 +20,7 @@ class MainViewController: UIViewController {
         activityIndicator.color = UIColor.black
         return activityIndicator
     }()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +31,8 @@ class MainViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        
-        safeArea = view.layoutMarginsGuide
-        setNavigationBar()
+        let screenSize: CGRect = UIScreen.main.bounds
+        setNavigationBar(width: screenSize.width)
         setupTableView()
         
     }
@@ -42,22 +40,24 @@ class MainViewController: UIViewController {
     func setupTableView() {
         view.addSubview(tableview)
         tableview.translatesAutoresizingMaskIntoConstraints = false
-        tableview.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        tableview.topAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
         tableview.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableview.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableview.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
-    func setNavigationBar() {
-        let screenSize: CGRect = UIScreen.main.bounds
-         navBar = UINavigationBar(frame: CGRect(x: 0, y:20, width: screenSize.width, height: 44))
+    
+    
+    func setNavigationBar(width: CGFloat) {
+        navigationBar = UINavigationBar(frame: CGRect(x: 0, y:30, width:width, height: 44))
+        navigationBar.barTintColor = UIColor.white
         let navItem = UINavigationItem(title: navBarTittle ?? "")
         let activityIndicatorItem = UIBarButtonItem(customView: self.activityIndicator)
         let refreshItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh, target: nil, action: #selector(refresh))
         navItem.rightBarButtonItem = refreshItem
         navItem.leftBarButtonItem = activityIndicatorItem
         navItem.largeTitleDisplayMode = .always
-        navBar.setItems([navItem], animated: false)
-        self.view.addSubview(navBar)
+        navigationBar.setItems([navItem], animated: false)
+        self.view.addSubview(navigationBar)
     }
     
     @objc func refresh() {
@@ -66,7 +66,7 @@ class MainViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        setNavigationBar()
+        setNavigationBar(width: size.width)
         setUpView()
     }
     
@@ -99,7 +99,7 @@ class MainViewController: UIViewController {
                 ///update UI on main thread
                 DispatchQueue.main.async {
                     self.navBarTittle = cellData.title
-                    self.navBar.topItem?.title = cellData.title
+                    self.navigationBar.topItem?.title = cellData.title
                 }
                 self.canadaListViewModel =  CandaViewModel.init(cellData:cellData.rows!)
             case .failure(let error):
@@ -138,7 +138,6 @@ extension MainViewController: UITableViewDataSource {
     
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellID, for: indexPath) as? InfoTableViewCell
             else { fatalError() }
-        cell.cellImage.image = nil
         let canadaListViewModel = CanadaListCellDataSource(asset: assetData[indexPath.row])
         cell.show(data: canadaListViewModel)
 
@@ -150,7 +149,7 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        // we can write future navigation and cell press action here 
     }
 }
 

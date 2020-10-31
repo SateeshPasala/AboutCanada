@@ -21,6 +21,6 @@ public enum EndPoints: String {
 
 public enum ConstantStrings: String {
     case okButtonTitle = "OK"
-    case titleError = "no title available"
-    case descreptionError = "no description available"
+    case titleError = "No title available"
+    case descreptionError = "No description available"
 }
