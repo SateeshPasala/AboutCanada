@@ -102,8 +102,13 @@ class MainViewController: UIViewController {
                 }
                 self.canadaListViewModel =  CandaViewModel.init(cellData:cellData.rows!)
             case .failure(let error):
-                //TODO: show alert here
-                print("error occured")
+                
+                /// Showing alert for errors
+                DispatchQueue.main.async() {
+                    let alert = Alert.init(subTitle: error.localizedDescription,
+                                           cancelTitle: "OK")
+                    alert.presentAlert(from: self)
+                }
             }
             
             /// Reload tableView and dismiss activity indicator
