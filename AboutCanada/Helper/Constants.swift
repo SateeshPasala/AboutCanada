@@ -13,3 +13,9 @@ public enum ConstantNumber: Int {
     case noOfRows = 0
 }
 
+///End point urls
+public enum EndPoints: String {
+    case prod = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
+    case test = "https://www.google.com"
+}
+
