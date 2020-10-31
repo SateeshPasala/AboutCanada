@@ -21,7 +21,7 @@ final class Networking: NSObject {
     private static func getData(url: URL,
                                 completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-
+        
     }
     
     
@@ -53,7 +53,7 @@ final class Networking: NSObject {
                 let asciiEncodedString  =  String(data: data, encoding: .ascii)!
                 let encodedData = asciiEncodedString.data(using: .utf8)!
                 let decoder = JSONDecoder()
-               decoder.dateDecodingStrategy = .millisecondsSince1970
+                decoder.dateDecodingStrategy = .millisecondsSince1970
                 let json = try decoder.decode(CellData.self, from: encodedData)
                 completion(.success(json))
             } catch let error {
