@@ -24,6 +24,7 @@ List of things done:
 12.	UI is done programmatically. 
 
 Additional Things covered while testing 
-1. Handled the nil cases of images 
-2. Some image URL are not valid and sending back data which is not an image , Handled that as well and showing a broken image place holder 
+1. Handled the nil cases of images .
+2. Some image URL are not valid and sending back data which is not an image , Handled that as well and showing a broken image place holder.
+
 3.Handled nil conditions in title and body .
