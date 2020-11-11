@@ -30,6 +30,9 @@ class AboutCanadaTests: XCTestCase {
             case .success(let data):
                 XCTAssertNotNil(data)
                 expectation.fulfill()
+            case .failure(let error):
+                XCTAssertNotNil(error)
+                expectation.fulfill()
             default:
                 XCTFail("Expected get  service response with error json")
             }
@@ -71,6 +74,11 @@ class AboutCanadaTests: XCTestCase {
         XCTAssertNotNil(infoList?.rows?.first?.imageHref)
     }
     
+    func testInternetConnection(){
+        XCTAssertEqual(Networking.connectedToNetwork(), MockConectionChecker.isInternetConnected())
+
+    }
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
@@ -88,4 +96,10 @@ class AboutCanadaTests: XCTestCase {
     }
     
     
+    class MockConectionChecker {
+        
+       public static func isInternetConnected() -> Bool{
+            Networking.connectedToNetwork()
+        }
+    }
 }
