@@ -28,6 +28,8 @@ Additional Things covered while testing
 2. Some image URL are not valid and sending back data which is not an image , Handled that as well and showing a broken image place holder.
 
 3.Handled nil conditions in title and body .
+
 4.Added UI test cases 
+
 5.Added Reachability classes 
 
