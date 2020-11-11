@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Network
 @testable import AboutCanada
 
 class AboutCanadaTests: XCTestCase {
@@ -75,8 +76,10 @@ class AboutCanadaTests: XCTestCase {
     }
     
     func testInternetConnection(){
-        XCTAssertEqual(Networking.connectedToNetwork(), MockConectionChecker.isInternetConnected())
-
+        
+        MockConectionChecker.isInternetConnected { isConnected in
+            XCTAssertEqual(Networking.connectedToNetwork(),isConnected)
+        }
     }
     
     override func tearDownWithError() throws {
@@ -98,8 +101,15 @@ class AboutCanadaTests: XCTestCase {
     
     class MockConectionChecker {
         
-       public static func isInternetConnected() -> Bool{
-            Networking.connectedToNetwork()
+        public static func isInternetConnected(handler: @escaping (Bool)->Void) {
+            let monitor = NWPathMonitor()
+            monitor.pathUpdateHandler = { path in
+                if path.status == .satisfied{
+                    handler(true)
+                }else {
+                    handler(false)
+                }
+            }
         }
     }
 }
