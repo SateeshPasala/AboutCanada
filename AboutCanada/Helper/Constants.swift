@@ -23,4 +23,10 @@ public enum ConstantStrings: String {
     case okButtonTitle = "OK"
     case titleError = "No title available"
     case descreptionError = "No description available"
+    case titleAccessibilityLabel = "title"
+    case descreptionAccessibilityLabel = "descreption"
+    case imageAccessibilityLabel = "cellImage"
+    case refreshControlAccessibilityLabel = "refreshControl"
+    case noInternetError = "The Internet connection appears to be offline."
+    case noInternetAlertTitle = "Your internet connection seems to be offline.Please try again after connecting"
 }

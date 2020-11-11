@@ -11,6 +11,7 @@ private let CellID = #file
 class MainViewController: UIViewController {
     
     var tableview  =  UITableView()
+    var refreshControl = UIRefreshControl()
     private var canadaListViewModel: CandaViewModel?
     var navigationBar: UINavigationBar!
     var navBarTittle : String?
@@ -44,6 +45,10 @@ class MainViewController: UIViewController {
         tableview.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableview.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableview.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        refreshControl.accessibilityLabel = ConstantStrings.refreshControlAccessibilityLabel.rawValue
+        tableview.addSubview(refreshControl)
     }
     
     
@@ -52,18 +57,13 @@ class MainViewController: UIViewController {
         navigationBar.barTintColor = UIColor.white
         let navItem = UINavigationItem(title: navBarTittle ?? "")
         let activityIndicatorItem = UIBarButtonItem(customView: self.activityIndicator)
-        let refreshItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh, target: nil, action: #selector(refresh))
-        navItem.rightBarButtonItem = refreshItem
+
         navItem.leftBarButtonItem = activityIndicatorItem
         navItem.largeTitleDisplayMode = .always
         navigationBar.setItems([navItem], animated: false)
         self.view.addSubview(navigationBar)
     }
-    
-    @objc func refresh() {
-        fetchData()
-    }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         setNavigationBar(width: size.width)
@@ -82,9 +82,19 @@ class MainViewController: UIViewController {
     }
     
     
-    /// Refresh button action
-    @objc private func refreshData(_ sender: Any) {
-        fetchData()
+    @objc func refresh(_ sender: AnyObject) {
+        if(Networking.connectedToNetwork()){
+            fetchData()
+        }else{
+            DispatchQueue.main.async() {
+                self.refreshControl.endRefreshing()
+                self.tableview.contentOffset = CGPoint.zero
+                let alert = Alert.init(subTitle: ConstantStrings.noInternetAlertTitle.rawValue,
+                                       cancelTitle: ConstantStrings.okButtonTitle.rawValue)
+                alert.presentAlert(from: self)
+                
+            }
+        }
     }
     
     private func fetchData() {
@@ -95,6 +105,7 @@ class MainViewController: UIViewController {
             case .success(let cellData):
                 ///update UI on main thread
                 DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
                     self.navBarTittle = cellData.title
                     self.navigationBar.topItem?.title = cellData.title
                 }
@@ -103,7 +114,8 @@ class MainViewController: UIViewController {
                 
                 /// Showing alert for errors
                 DispatchQueue.main.async() {
-                    let alert = Alert.init(subTitle: error.localizedDescription,
+                    let errorString = error.localizedDescription == ConstantStrings.noInternetError.rawValue  ? ConstantStrings.noInternetAlertTitle.rawValue : error.localizedDescription
+                    let alert = Alert.init(subTitle: errorString,
                                            cancelTitle: ConstantStrings.okButtonTitle.rawValue)
                     alert.presentAlert(from: self)
                 }
@@ -112,6 +124,7 @@ class MainViewController: UIViewController {
             /// Reload tableView and dismiss activity indicator
             DispatchQueue.main.async() {
                 self.activityIndicator.stopAnimating()
+                self.refreshControl.endRefreshing()
                 self.tableview.reloadData()
             }
         }

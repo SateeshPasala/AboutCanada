@@ -108,11 +108,16 @@ class InfoTableViewCell: UITableViewCell {
     
     private func configLabels() {
         title.isUserInteractionEnabled = false
+        title.accessibilityLabel = ConstantStrings.titleAccessibilityLabel.rawValue
+       
         title.numberOfLines = 0
         title.font = .boldSystemFont(ofSize: 18)
         descreption.numberOfLines = 0
         descreption.font = .italicSystemFont(ofSize: 18)
+        descreption.accessibilityLabel = ConstantStrings.descreptionAccessibilityLabel.rawValue
+      
         cellImage.contentMode =  .scaleAspectFit;
+        cellImage.accessibilityLabel = ConstantStrings.imageAccessibilityLabel.rawValue          
         
     }
 }
